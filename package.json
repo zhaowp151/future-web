@@ -3,14 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "开发": "",
+    "serve-dev": "vue-cli-service serve",
+    "编译": "",
+    "build-dev": "vue-cli-service build --mode dev",
+    "build-prod": "vue-cli-service build --mode prod",
+    "build-test": "vue-cli-service build --mode test",
+    "部署": "",
+    "deploy-prod": "vue-cli-service build --mode prod &&  node deploy/prod/index.js",
+    "deploy-dev": "vue-cli-service build --mode dev && node deploy/dev/index.js",
+   
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "element-plus": "^1.0.1-beta.7",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.0-0",
@@ -41,6 +50,7 @@
     "eslint-plugin-vue": "^7.0.0-0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
+    "ssh2-sftp-client": "^5.3.2",
     "typescript": "~3.9.3",
     "vue-jest": "^5.0.0-0"
   },
