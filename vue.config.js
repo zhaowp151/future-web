@@ -1,4 +1,16 @@
 const CompressionPlugin = require('compression-webpack-plugin')
+let prodEnv = false
+if (process.env.NODE_ENV === 'production') {
+  prodEnv = true
+}
+
+const mockServer = () => {
+  if (process.env.NODE_ENV === 'development') {
+    return require('./mock/mockServer.ts')
+  } else {
+    return ''
+  }
+}
 
 module.exports = {
   // type :string  defalut :"/"
@@ -120,7 +132,7 @@ module.exports = {
         threshold: 10240,
         minRatio: 0.8,
         // 删除原始文件只保留压缩后的文件
-        deleteOriginalAssets: true
+        deleteOriginalAssets: prodEnv
       })
     ]
   },
@@ -221,7 +233,8 @@ module.exports = {
   // 开发配置
   // 细节查看 https://webpack.js.org/configuration/dev-server/#devserver
   devServer: {
-    // open: true,
+    hot: true,
+    open: true,
     port: '8081',
     proxy: {
       '/api_wp': {
@@ -236,6 +249,7 @@ module.exports = {
           '^/api_ess_wp': ''
         }
       }
-    }
+    },
+    after: mockServer()
   }
 }
