@@ -12,7 +12,7 @@ async function connectSSh() {
     password: config.password
   }).then(() => {
     console.log("先执行删除服务器文件")
-    // return sftp.rmdir(config.rmpath, true);
+    return sftp.rmdir(config.rmpath, true);
   }).then(() => {
     // 上传文件
     console.log("开始上传")

@@ -1,3 +1,5 @@
+const CompressionPlugin = require('compression-webpack-plugin')
+
 module.exports = {
   // type :string  defalut :"/"
   // 把开发服务器架设在根路径
@@ -82,23 +84,53 @@ module.exports = {
   // 如果这个值是一个对象，则会通过 webpack-merge 合并到最终的配置中。
   // 如果这个值是一个函数，则会接收被解析的配置作为参数。该函数及可以修改配置并不返回任何东西，也可以返回一个被克隆或合并过的配置版本。
   // 细节查看 https://cli.vuejs.org/zh/guide/webpack.html#简单的配置方式
-  configureWebpack: config => {
-    // if (process.env.NODE_ENV === 'production') {
-    //     // 为生产环境修改配置...
-    //     config.externals = {
-    //         'BMap': 'BMap',
-    //         'BMapLib': 'BMapLib'
-    //     }
-    // } else {
-    //     // 为开发环境修改配置...
-    //     config.externals = {
-    //         'BMap': 'BMap',
-    //         'BMapLib': 'BMapLib'
-    //     }
-    // }
+  // configureWebpack: config => {
+  //   if (process.env.NODE_ENV === 'production') {
+  //       // 为生产环境修改配置...
+  //       config.externals = {
+  //           'BMap': 'BMap',
+  //           'BMapLib': 'BMapLib'
+  //       }
+  //   } else {
+  //       // 为开发环境修改配置...
+  //       config.externals = {
+  //           'BMap': 'BMap',
+  //           'BMapLib': 'BMapLib'
+  //       }
+  //   }
+  // },
+  configureWebpack: {
+    plugins: [
+      new CompressionPlugin({
+        // [file]被替换为原始资产文件名。
+        // [path]替换为原始资产的路径。
+        // [dir]替换为原始资产的目录。
+        // [name]被替换为原始资产的文件名。
+        // [ext]替换为原始资产的扩展名。
+        // [query]被查询替换。
+        // filename: '[path].br[query]',
+        // filename: '[path].gz[query]',
+        // 压缩算法
+        algorithm: 'gzip',
+        // algorithm: 'brotliCompress',
+        // 匹配文件
+        test: /\.(js|css|html|svg)$/,
+        // compressionOptions: { level: 11 },
+        // 压缩超过此大小的文件,以字节为单位
+        threshold: 10240,
+        minRatio: 0.8,
+        // 删除原始文件只保留压缩后的文件
+        deleteOriginalAssets: true
+      })
+    ]
   },
 
   chainWebpack: config => {
+    // config.plugin('vue-cli-plugin-compression').use(require('vue-cli-plugin-compression')).tap(args => {
+    //   args.test = /\.(js|css)$/
+    //   args.threshold = 10240
+    //   return args
+    // })
     // if (process.env.NODE_ENV === 'production') {
     //     config.plugin('webpack-bundle-analyzer')
     //         .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
