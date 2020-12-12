@@ -136,7 +136,7 @@ module.exports = {
         // 压缩超过此大小的文件,以字节为单位
         threshold: 10240,
         minRatio: 0.8,
-        // 删除原始文件只保留压缩后的文件
+        // 删除原始文件只保留压缩后的文件 nginx中gzip_static与try_files 共存需要
         deleteOriginalAssets: false
       })
     ]
