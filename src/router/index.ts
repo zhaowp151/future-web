@@ -9,14 +9,15 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue')
-  }
+  },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/views/errPage/Page404.vue') },
 ]
 
 
 
 
 const router = createRouter({
-  history: createWebHistory(process.env.VUE_APP_BASE_URL),
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 

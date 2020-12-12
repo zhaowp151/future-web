@@ -1,7 +1,7 @@
 <!--  -->
 <template>
 <div class='wp-login'>
-    <router-link to="/login">你看看</router-link>
+    <router-link to="/login/eqw">你看看</router-link>
 </div>
 </template>
 

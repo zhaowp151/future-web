@@ -19,9 +19,9 @@ export default {
     text-align: center;
     padding-top: 20%; 
     box-sizing: border-box;
-    background: $color-background;
+    background: green;
     .text-muted {
-        color: $color-font-primary;
+        color: wheat;
         font-size: 14px;
     }
 }
