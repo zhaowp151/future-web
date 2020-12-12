@@ -12,6 +12,11 @@ const mockServer = () => {
   }
 }
 
+const path = require('path')
+
+function resolve (dir) {
+  path.join(__dirname, dir)
+}
 module.exports = {
   // type :string  defalut :"/"
   // 把开发服务器架设在根路径
@@ -63,7 +68,7 @@ module.exports = {
   // false：无反应
   // error：这会强制 eslint-loader 将 lint 错误输出为编译错误，同时也意味着 lint 错误将会导致编译失败。
   // 通过设置让浏览器 overlay 同时显示警告和错误 在 devServe 配置项中  ==>  overlay: {warnings: true,errors: true}
-  lintOnSave: true,
+  lintOnSave: false,
 
   // type :boolean defalut :"false"
   // 是否使用包含运行时编译器的 Vue 构建版本。设置为 true 后你就可以在 Vue 组件中使用 template 选项了，但是这会让你的应用额外增加 10kb 左右。
@@ -236,20 +241,20 @@ module.exports = {
     hot: true,
     open: true,
     port: '8081',
-    proxy: {
-      '/api_wp': {
-        target: 'http://192.168.19.226:9020/',
-        pathRewrite: {
-          '^/api_wp': ''
-        }
-      },
-      '/api_ess_wp': {
-        target: 'http://192.168.19.9:9030/',
-        pathRewrite: {
-          '^/api_ess_wp': ''
-        }
-      }
-    },
+    // proxy: {
+    //   '/api_wp': {
+    //     target: 'http://192.168.19.226:9020/',
+    //     pathRewrite: {
+    //       '^/api_wp': ''
+    //     }
+    //   },
+    //   '/api_ess_wp': {
+    //     target: 'http://192.168.19.9:9030/',
+    //     pathRewrite: {
+    //       '^/api_ess_wp': ''
+    //     }
+    //   }
+    // },
     after: mockServer()
   }
 }
