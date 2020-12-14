@@ -17,7 +17,7 @@ export default {
     width: 100%;
     height: 100%;
     text-align: center;
-    padding-top: 20%; 
+    padding-top: 20%;
     box-sizing: border-box;
     background: green;
     .text-muted {
@@ -26,4 +26,3 @@ export default {
     }
 }
 </style>
-

@@ -7,11 +7,15 @@
     "serve-dev": "vue-cli-service serve",
     "编译": "",
     "build-dev": "vue-cli-service build --mode dev",
+    "ie-dev": "vue-cli-service build --modern --mode dev",
     "build-prod": "vue-cli-service build --mode prod",
+    "ie-prod": "vue-cli-service build --modern --mode prod",
     "build-test": "vue-cli-service build --mode test",
     "部署": "",
     "deploy-prod": "vue-cli-service build --mode prod &&  node deploy/prod/index.js",
+    "ie-deploy-prod": "npx vue-cli-service build  --modern --mode prod &&  node deploy/prod/index.js",
     "deploy-dev": "vue-cli-service build --mode dev && node deploy/dev/index.js",
+    "ie-deploy-dev": "vue-cli-service build  --modern --mode dev && node deploy/dev/index.js",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "inspect": "vue-cli-service inspect > output.js",
@@ -85,8 +89,7 @@
   },
   "browserslist": [
     "> 1%",
-    "last 2 versions",
-    "not dead"
+    "last 2 versions"
   ],
   "jest": {
     "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel",

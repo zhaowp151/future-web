@@ -1,3 +1,4 @@
+// esnext
 {
   "compilerOptions": {
     "target": "esnext",

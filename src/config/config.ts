@@ -4,6 +4,6 @@
 const config = {
   layout: 'vertical',
   donation: true,
-  templateFolder: 'project',
+  templateFolder: 'project'
 }
 module.exports = config
