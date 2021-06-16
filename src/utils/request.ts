@@ -1,9 +1,10 @@
 import axios from 'axios'
-import { baseURL, contentType, debounce, requestTimeout, successCode, tokenName } from '@/config'
+// import { baseURL, contentType, debounce, requestTimeout, successCode, tokenName } from '@/config'
+import configs from '@/config'
 import store from '@/store'
 import qs from 'qs'
 import router from '@/router'
-import { isArray } from '@/util/validate'
+import { isArray } from '@/utils/validate'
 import { ElMessage } from 'element-plus'
 
 let loadingInstance: { close: () => void }
@@ -12,10 +13,10 @@ const handleCode = (code: any, msg: any) => {
   switch (code) {
     case 401:
       ElMessage.error(msg || '登录失效')
-      store.dispatch('user/resetAll').catch(() => {})
+      store.dispatch('user/resetAll').catch()
       break
     case 403:
-      router.push({ path: '/401' }).catch(() => {})
+      router.push({ path: '/401' }).catch()
       break
     default:
       ElMessage.error(msg || `后端接口${code}异常`)
@@ -23,24 +24,26 @@ const handleCode = (code: any, msg: any) => {
   }
 }
 
-const instance = axios.create({
-  baseURL,
-  timeout: requestTimeout,
+const request = axios.create({
+  baseURL: configs.baseURL,
+  timeout: configs.requestTimeout,
   headers: {
-    'Content-Type': contentType
+    'Content-Type': configs.contentType
   }
 }
 )
 
-instance.interceptors.request.use(
+request.interceptors.request.use(
   (config) => {
-    if (store.getters['user/accessToken']) { config.headers[tokenName] = store.getters['user/accessToken'] }
+    if (store.getters['user/accessToken']) { config.headers[configs.tokenName] = store.getters['user/accessToken'] }
     if (
       config.data &&
         config.headers['Content-Type'] ===
             'application/x-www-form-urlencoded;charset=UTF-8'
     ) { config.data = qs.stringify(config.data) }
-    if (debounce.some((item: string) => config.url.includes(item))) {
+    if (configs.debounce.some((item: string) => function () {
+
+    })) {
       // 这里写加载动画
     }
     return config
@@ -50,16 +53,16 @@ instance.interceptors.request.use(
   }
 )
 
-instance.interceptors.response.use(
+request.interceptors.response.use(
   (response) => {
     if (loadingInstance) loadingInstance.close()
 
     const { data, config } = response
     const { code, msg } = data
     // 操作正常Code数组
-    const codeVerificationArray = isArray(successCode)
-      ? [...successCode]
-      : [...[successCode]]
+    const codeVerificationArray = isArray(configs.successCode)
+      ? [...configs.successCode]
+      : [...[configs.successCode]]
     // 是否操作正常
     if (codeVerificationArray.includes(code)) {
       return data
@@ -95,4 +98,4 @@ instance.interceptors.response.use(
   }
 )
 
-export default instance
+export default request

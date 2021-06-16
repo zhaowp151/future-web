@@ -1,9 +1,9 @@
 /**
  * @description 导出自定义配置
  **/
-const config = {
+const configs = {
   layout: 'vertical',
   donation: true,
   templateFolder: 'project'
 }
-module.exports = config
+export default configs

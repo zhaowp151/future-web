@@ -11,4 +11,4 @@ const network = {
   // 操作正常code，支持String、Array、int多种类型
   successCode: [200, 0]
 }
-module.exports = network
+export default network

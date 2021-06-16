@@ -76,4 +76,4 @@ const setting = {
   // 画廊布局和综合布局时，是否点击一级菜单默认开启第一个二级菜单
   openFirstMenu: true
 }
-module.exports = setting
+export default setting

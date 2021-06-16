@@ -1,7 +1,7 @@
 import request from '@/utils/request'
-import { tokenName } from '@/config'
+import tokenName from '@/config'
 
-export async function login (data) {
+export async function login (data: any) {
   return request({
     url: '/login',
     method: 'post',
@@ -9,7 +9,7 @@ export async function login (data) {
   })
 }
 
-export async function socialLogin (data) {
+export async function socialLogin (data: any) {
   return request({
     url: '/socialLogin',
     method: 'post',
@@ -17,7 +17,7 @@ export async function socialLogin (data) {
   })
 }
 
-export function getUserInfo (accessToken) {
+export function getUserInfo (accessToken: any) {
   // 此处为了兼容mock.js使用data传递accessToken，如果使用mock可以走headers
   return request({
     url: '/userInfo',

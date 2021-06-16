@@ -2,13 +2,13 @@
   "name": "future-web",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "开发": "",
     "serve-dev": "vue-cli-service serve",
     "编译": "",
     "build-dev": "vue-cli-service build --mode dev",
     "ie-dev": "vue-cli-service build --modern --mode dev",
-    "build-prod": "vue-cli-service build --mode prod",
     "ie-prod": "vue-cli-service build --modern --mode prod",
     "build-test": "vue-cli-service build --mode test",
     "部署": "",
@@ -58,6 +58,7 @@
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
     "ssh2-sftp-client": "^5.3.2",
+    "tern": "^0.24.3",
     "typescript": "~3.9.3",
     "vue-jest": "^5.0.0-0"
   },

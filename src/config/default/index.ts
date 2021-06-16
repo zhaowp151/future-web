@@ -1,8 +1,10 @@
 /**
  * @description 导出默认配置(通用配置|主题配置|网络配置)
  **/
-const setting = require('./setting.config.ts')
-const theme = require('./theme.config.ts')
-const network = require('./net.config.ts')
+import settings from '@/config/default/setting.config'
+import themes from '@/config/default/theme.config'
+import networks from '@/config/default/net.config'
 
-module.exports = { setting, theme, network }
+const indexs: any =  { settings, themes, networks }
+
+export default indexs

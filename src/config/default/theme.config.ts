@@ -25,4 +25,4 @@ const theme = {
   // 是否显示全屏组件
   showFullScreen: true
 }
-module.exports = theme
+export default theme
